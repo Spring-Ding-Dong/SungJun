@@ -1,2 +1,4 @@
-package com.springDingDong.Jay.assignment1;public interface JayDoStudy {
+package com.springDingDong.Jay.assignment1;
+
+public interface JayDoStudy {
 }
