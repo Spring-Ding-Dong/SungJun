@@ -11,13 +11,12 @@ import java.util.List;
 
 @RequestMapping("Player")
 @Transactional
+@RequiredArgsConstructor
 public class    PlayerController {
 
     private final PlayerRepository playerRepository;
 
-    public PlayerController(PlayerRepository playerRepository) {
-        this.playerRepository = playerRepository;
-    }
+
 //    private EntityManager em;
 //    public PlayerController(EntityManager em) {
 //        this.em = em;

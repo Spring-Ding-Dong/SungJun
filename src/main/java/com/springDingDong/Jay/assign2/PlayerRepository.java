@@ -1,6 +1,7 @@
 package com.springDingDong.Jay.assign2;
 
 import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+
 public class PlayerRepository {
     private final EntityManager em;
     public PlayerRepository(EntityManager em) {
@@ -31,7 +33,7 @@ public class PlayerRepository {
     }
 
     public List<Player> findAll() {
-        return em.createQuery("from Player", Player.class).getResultList();
+        return em.createQuery("SELECT p FROM Player p", Player.class).getResultList();
     }
 
     public void deleteByName(String name) {

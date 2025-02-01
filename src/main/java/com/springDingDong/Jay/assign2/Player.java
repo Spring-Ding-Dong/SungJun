@@ -4,10 +4,13 @@ package com.springDingDong.Jay.assign2;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
-
+@Getter
+@Setter
 public class Player {
 
     @Id
@@ -22,43 +25,4 @@ public class Player {
 
     private Long Salary;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
-
-    public Long getSalary() {
-        return Salary;
-    }
-
-    public void setSalary(Long salary) {
-        Salary = salary;
-    }
-
-    public String getPosition() {
-        return Position;
-    }
-
-    public void setPosition(String position) {
-        Position = position;
-    }
 }
