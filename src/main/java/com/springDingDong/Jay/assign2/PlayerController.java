@@ -3,62 +3,63 @@ package com.springDingDong.Jay.assign2;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-
-@RequestMapping("Player")
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class    PlayerController {
 
-    private final PlayerRepository playerRepository;
+    private final PlayerService playerService;
 
 
 //    private EntityManager em;
 //    public PlayerController(EntityManager em) {
 //        this.em = em;
 //    }
-
-    @PostMapping("/AddPlayer")
-    public Player createPlayer(@RequestBody Player player) {
+    //RESTFUL하게 주소값 수정.
+    @PostMapping("/Player")
+    public void createPlayer(@RequestBody Player player) { //반환타입 수정 Player-->void
 //        em.persist(player);
 //        return player;
-        playerRepository.save(player);
-        return player;
+        playerService.save(player);
+        log.info("Create player : {}", player);//로그 추가
+
 
     }
 
-    @GetMapping("/GetAllPlayer")
+    @GetMapping("/Players")
     public List<Player> getAllPlayer() {
 //        return em.createQuery("select p from Player p", Player.class).getResultList();
-        return playerRepository.findAll();
+        return playerService.findAll();
 
     }
-    @GetMapping("/GetPlayerById/{id}")
+    @GetMapping("/Player/{id}")
     public Player getPlayerById(@PathVariable Long id) {
-        return playerRepository.findById(id);
+        return playerService.findById(id);
     }
-    @GetMapping("/GetPlayerByName/{name}")
+    @GetMapping("/Player/Name/{name}")
     public Player getPlayerByName(@PathVariable String name) {
-        return playerRepository.findByName(name);
+        return playerService.findByName(name);
     }
 
-    @DeleteMapping("/RemovePlayer/{name}")
+    @DeleteMapping("/Player/{name}")
     public String deletePlayer(@PathVariable String name) {
         // Repo로 로직 분리하는게 나을듯..
 
-       playerRepository.deleteByName(name);
+       playerService.deleteByName(name);
        return "Delete Player Successfully";
 
 
     }
 
-    @PutMapping("/ChangeTeamByName")
-    public String changeTeamByName(@RequestParam String name,@RequestParam String newTeam) {
-        playerRepository.changeTeamByName(name,newTeam);
+    @PutMapping("/Player/{name}/{newTeam}")
+    public String changeTeamByName(@PathVariable String name,@PathVariable String newTeam) {
+        playerService.changeTeamByName(name,newTeam);
         return "Change Team Successfully";
     }
 
